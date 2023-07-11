@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "179585454947",
+    "firebase_url": "https://tudntuttor-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tudntuttor",
+    "storage_bucket": "tudntuttor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179585454947:android:cf5420554c84c243cc7956",
+        "android_client_info": {
+          "package_name": "com.example.tudsustainabilityapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtICTeWNwG2DiD118CXea6WNFRwzdNJ2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/offer"
+            android:icon="@drawable/archery"
+            android:title="Archery"
+            app:showAsAction="never"></item>
+        <item
+            android:id="@+id/find"
+            android:icon="@drawable/dance"
+            android:title="Dance"
+            app:showAsAction="never"></item>
+        <item
+            android:id="@+id/updateRide"
+            android:icon="@drawable/swimming"
+            android:title="Swimming"
+            app:showAsAction="never"></item>
+        <item
+            android:id="@+id/delete"
+            android:icon="@drawable/yoga"
+            android:title="Yoga"
+            app:showAsAction="never"></item>
+    </group>
+    <item
+        android:icon="@drawable/ecology"
+        android:title="LOGOUT">
+        <menu>
+            <item
+                android:id="@+id/logout"
+                android:title="LOGOUT"></item>
+        </menu>
+    </item>
+</menu>

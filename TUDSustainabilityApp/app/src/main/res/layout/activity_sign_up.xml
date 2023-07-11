@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/tud_login"
+    tools:context=".SignUpActivity">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100sp"
+        android:layout_margin="50dp"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView android:id="@+id/image_1"
+                android:layout_weight="0.6"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:src="@drawable/tudublin_black_bg_blue_logo"
+                android:adjustViewBounds="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView android:id="@+id/image_2"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:src="@drawable/ntuttorlogo"
+                android:adjustViewBounds="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100sp">
+
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/ashgrey"
+                android:background="@drawable/rounded_tab"
+                android:hint="Full Name"></EditText>
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:layout_below="@+id/username"
+                android:textColorHint="@color/ashgrey"
+                android:background="@drawable/rounded_tab"
+                android:hint="Email"></EditText>
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/email"
+                android:textColor="@color/black"
+                android:textColorHint="@color/ashgrey"
+                android:background="@drawable/rounded_tab"
+                android:layout_margin="10dp"
+                android:hint="Password"></EditText>
+
+            <EditText
+                android:id="@+id/passwordreenter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/password"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/ashgrey"
+                android:background="@drawable/rounded_tab"
+                android:hint="Renter Password"></EditText>
+
+            <EditText
+                android:id="@+id/phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/passwordreenter"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/ashgrey"
+                android:background="@drawable/rounded_tab"
+                android:hint="Phone Number"></EditText>
+
+
+                <Button
+                    android:id="@+id/signupButton"
+                    android:layout_width="250sp"
+                    android:layout_height="60sp"
+                    android:layout_below="@+id/phonenumber"
+                    android:layout_marginTop="40sp"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="@color/teal_700"
+                    android:text="SignUp"></Button>
+
+                <Button
+                    android:id="@+id/loginButton"
+                    android:layout_width="250sp"
+                    android:layout_height="60sp"
+                    android:layout_below="@+id/signupButton"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="@color/teal_700"
+                    android:text="have an account? Login"></Button>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/tud_login"
+    tools:context=".SignUpActivity">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100sp"
+        android:layout_margin="50dp"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView android:id="@+id/image_1"
+                android:layout_weight="0.6"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:src="@drawable/tudublin_black_bg_blue_logo"
+                android:adjustViewBounds="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView android:id="@+id/image_2"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:src="@drawable/ntuttorlogo"
+                android:adjustViewBounds="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150sp">
+            <EditText
+                android:id="@+id/username"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColorHint="@color/ashgrey"
+                android:background="@drawable/rounded_tab"
+                android:hint="UserName"></EditText>
+
+            <EditText
+                android:id="@+id/password"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/username"
+                android:layout_margin="10dp"
+                android:textColorHint="@color/ashgrey"
+                android:background="@drawable/rounded_tab"
+                android:hint="Password"></EditText>
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="250sp"
+                android:layout_height="60sp"
+                android:layout_below="@+id/password"
+                android:layout_marginTop="40sp"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/teal_700"
+                android:text="Login"></Button>
+            <Button
+                android:id="@+id/signRedirect"
+                android:layout_width="250sp"
+                android:layout_height="60sp"
+                android:layout_below="@+id/login"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/teal_700"
+                android:text="Dont have an account! Sign up now"></Button>
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>
