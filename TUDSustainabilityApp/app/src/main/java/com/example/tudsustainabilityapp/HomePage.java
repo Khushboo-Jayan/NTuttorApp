@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ public class HomePage extends AppCompatActivity{
     DrawerLayout drawer;
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,8 @@ public class HomePage extends AppCompatActivity{
 
         drawer = findViewById(R.id.drawlayout);
         navigationView = findViewById(R.id.navBar);
+
+        auth = FirebaseAuth.getInstance();
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(HomePage.this,drawer,R.string.open,R.string.close);
         drawer.addDrawerListener(actionBarDrawerToggle);
@@ -36,8 +40,9 @@ public class HomePage extends AppCompatActivity{
                 int id = item.getItemId();
 
                 //intent to page offer to make a ride offer
-                if(id == R.id.offer){
-                    Toast.makeText(HomePage.this, "Moving to page to offer a ride", Toast.LENGTH_SHORT).show();
+                if(id == R.id.creditScoreBarcode){
+                    Intent generateCode = new Intent(HomePage.this, BarCodeGenerator.class);
+                    startActivity(generateCode);
                 }
 
                 //intent to page find to search for a ride using to source and destination
@@ -53,8 +58,11 @@ public class HomePage extends AppCompatActivity{
                 }
                 //logout and return to login page removing data in textview
                 else if(id == R.id.logout){
-                    Toast.makeText(HomePage.this, "LOGGING OUT!!", Toast.LENGTH_SHORT).show();
-                    FirebaseAuth.getInstance().signOut();
+                    auth.signOut();
+                    Intent logout = new Intent(HomePage.this, MainActivity.class);
+                    startActivity(logout);
+                    finish();
+                    Toast.makeText(HomePage.this, "LOGGED OUT SUCCESSFULLY!!", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }

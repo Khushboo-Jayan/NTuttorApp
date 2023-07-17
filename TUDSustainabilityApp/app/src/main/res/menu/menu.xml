@@ -6,9 +6,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/offer"
+            android:id="@+id/creditScoreBarcode"
             android:icon="@drawable/archery"
-            android:title="Archery"
+            android:title="Student Credit Score"
             app:showAsAction="never"></item>
         <item
             android:id="@+id/find"
