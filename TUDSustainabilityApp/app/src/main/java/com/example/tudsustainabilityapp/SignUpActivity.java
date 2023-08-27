@@ -77,7 +77,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                 DocumentReference documentReference = fstore.collection("Users").document(user.getUid());
 
                                 //store the data
-                                Map<String, Object> userInfo = new HashMap<>();
+                                HashMap<String, String> userInfo = new HashMap<>();
                                 userInfo.put("Fullname", userFullname);
                                 userInfo.put("UserEmail", userEmail);
                                 userInfo.put("Password", userRepass);

@@ -1,8 +1,8 @@
-package com.example.creditscorecollector;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.tudsustainabilityapp;
 
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Capture extends AppCompatActivity {
 

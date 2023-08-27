@@ -8,13 +8,6 @@
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="Android Studio default JDK" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/creditScoreCollector" />
-          </set>
-        </option>
       </GradleProjectSettings>
     </option>
   </component>

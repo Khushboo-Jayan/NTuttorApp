@@ -47,7 +47,8 @@ public class HomePage extends AppCompatActivity{
 
                 //intent to page find to search for a ride using to source and destination
                 else if(id == R.id.find){
-                    Toast.makeText(HomePage.this, "Moving to page to find a ride", Toast.LENGTH_SHORT).show();
+                    Intent generateCode = new Intent(HomePage.this, CreditScore.class);
+                    startActivity(generateCode);
                 }
 
                 else if(id == R.id.updateRide){
