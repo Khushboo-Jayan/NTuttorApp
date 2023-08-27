@@ -1,63 +1,50 @@
 package com.example.tudsustainabilityapp;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.*;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.journeyapps.barcodescanner.ScanContract;
-import com.journeyapps.barcodescanner.ScanOptions;
 
-import java.util.HashMap;
 
-public class CreditScore extends AppCompatActivity implements View.OnClickListener{
-
-    private FirebaseAuth auth;
-    private FirebaseFirestore fstore;
+public class CreditScore extends AppCompatActivity {
 
     Button barCodeScannerBtn;
+    TextView StudentData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credit_score);
         barCodeScannerBtn = findViewById(R.id.barCodeScannerButton);
+        StudentData = findViewById(R.id.scannedValue);
 
-        barCodeScannerBtn.setOnClickListener(this);
+        barCodeScannerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator intentIntegrator = new IntentIntegrator(CreditScore.this);
+                intentIntegrator.setOrientationLocked(false);
+                intentIntegrator.setPrompt("Scan a Barcode");
+                intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
+                intentIntegrator.initiateScan();
+            }
+        });
     }
 
     @Override
-    public void onClick(View view) {
-        scanCode();
-    }
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-    private void scanCode(){
-        ScanOptions options = new ScanOptions();
-        options.setPrompt("Volume up to flash on");
-        options.setBeepEnabled(true);
-        options.setOrientationLocked(true);
-        options.setCaptureActivity(Capture.class);
-        barScanner.launch(options);
-    }
-
-    ActivityResultLauncher<ScanOptions> barScanner = registerForActivityResult(new ScanContract(), result -> {
-        if(result.getContents()!=null){
-            AlertDialog.Builder builder = new AlertDialog.Builder(CreditScore.this);
-            builder.setTitle("Result");
-            builder.setMessage(result.getContents());
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                }
-            }).show();
-        }
-    });
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(intentResult != null){
+            String content = intentResult.getContents();
+            if(content != null){
+                StudentData.setText(intentResult.getContents() );
+            }else {
+                super.onActivityResult(requestCode, resultCode, data);
+            }//end else
+        }//if endd
+    }//check and get data from barcode if exists
 }

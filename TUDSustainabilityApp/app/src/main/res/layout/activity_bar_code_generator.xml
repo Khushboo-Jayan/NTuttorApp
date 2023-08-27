@@ -10,24 +10,26 @@
         android:id="@+id/barcodeGeneratorBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="144dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="152dp"
         android:text="@string/barcode_generator"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/barCode"
-        android:layout_width="326dp"
-        android:layout_height="137dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_below="@+id/barcodeGeneratorBtn"
-        android:layout_marginTop="68dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:contentDescription="TODO"
         app:layout_constraintEnd_toEndOf="@+id/barcodeGeneratorBtn"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="@+id/barcodeGeneratorBtn"
         app:layout_constraintTop_toBottomOf="@+id/barcodeGeneratorBtn"
         app:srcCompat="?attr/actionBarDivider"
-        tools:ignore="ImageContrastCheck"
-        android:contentDescription="TODO" />
+        tools:ignore="ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class BarCodeGenerator extends AppCompatActivity implements View.OnClickListener{
 
@@ -34,15 +35,9 @@ public class BarCodeGenerator extends AppCompatActivity implements View.OnClickL
 
         MultiFormatWriter mfwriter = new MultiFormatWriter();
         try {
-            BitMatrix bitMatrix = mfwriter.encode(dataForBarCode, BarcodeFormat.CODE_128, barCodeImage.getWidth(), barCodeImage.getHeight());
-            Bitmap bitmap = Bitmap.createBitmap(barCodeImage.getWidth(), barCodeImage.getHeight(), Bitmap.Config.RGB_565);
-
-            for(int i = 0; i< barCodeImage.getWidth(); i++){
-                for(int j = 0; j< barCodeImage.getHeight(); j++){
-                    bitmap.setPixel(i,j,bitMatrix.get(i,j)? Color.BLACK:Color.WHITE);
-                }
-            }
-
+            BitMatrix bitMatrix = mfwriter.encode(dataForBarCode, BarcodeFormat.QR_CODE, barCodeImage.getWidth(), barCodeImage.getHeight());
+            BarcodeEncoder barcodeencoder = new BarcodeEncoder();
+            Bitmap bitmap = barcodeencoder.createBitmap(bitMatrix);
             barCodeImage.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
