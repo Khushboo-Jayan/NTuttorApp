@@ -98,26 +98,37 @@
                 android:background="@drawable/rounded_tab"
                 android:hint="Phone Number"></EditText>
 
-
-                <Button
-                    android:id="@+id/signupButton"
-                    android:layout_width="250sp"
-                    android:layout_height="60sp"
-                    android:layout_below="@+id/phonenumber"
-                    android:layout_marginTop="40sp"
-                    android:layout_centerInParent="true"
-                    android:backgroundTint="@color/teal_700"
-                    android:text="SignUp"></Button>
-
-                <Button
-                    android:id="@+id/loginButton"
-                    android:layout_width="250sp"
-                    android:layout_height="60sp"
-                    android:layout_below="@+id/signupButton"
-                    android:layout_centerInParent="true"
-                    android:backgroundTint="@color/teal_700"
-                    android:text="have an account? Login"></Button>
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner"
+                style="@style/Widget.AppCompat.Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10sp"
+                android:layout_below="@+id/phonenumber"
+                android:theme="@style/Spinner"
+                android:textColorHint="@color/ashgrey"
+                tools:listitem="@layout/support_simple_spinner_dropdown_item"
+                android:entries="@array/members">
+            </androidx.appcompat.widget.AppCompatSpinner>
         </RelativeLayout>
-
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="250sp"
+        android:layout_height="60sp"
+        android:backgroundTint="@color/teal_700"
+        android:text="SignUp"></Button>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="250sp"
+        android:layout_height="60sp"
+        android:backgroundTint="@color/teal_700"
+        android:text="have an account? Login"></Button>
+
+
+
+
 </LinearLayout>

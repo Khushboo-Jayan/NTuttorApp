@@ -16,4 +16,12 @@
     <style name="Button.White" parent="ThemeOverlay.AppCompat">
         <item name="colorAccent">@android:color/white</item>
     </style>
+    <style name="Spinner" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:prompt">@color/black</item>
+        <item name="android:background">@drawable/rounded_tab</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

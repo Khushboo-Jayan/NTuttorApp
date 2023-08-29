@@ -3,4 +3,11 @@
     <string name="open">Open Navigation Drawer</string>
     <string name="close">Close Navigation Drawer</string>
     <string name="barcode_generator">BarCode Generator</string>
+
+    <string-array name="members">
+        <item>Student</item>
+        <item>Lecturer</item>
+        <item>Staff</item>
+    </string-array>
+
 </resources>

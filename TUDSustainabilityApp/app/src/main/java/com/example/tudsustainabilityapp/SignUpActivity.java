@@ -7,8 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +35,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     EditText username,emailID, password, reenterpasswrod, phonenumber;
     Button signupBtn, loginRedirectButton;
     String userID;
+    Spinner spinnerForMembers;
 
     public boolean valid = true;
 
@@ -46,9 +50,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         password = (EditText) findViewById(R.id.password);
         reenterpasswrod = (EditText) findViewById(R.id.passwordreenter);
         phonenumber = (EditText) findViewById(R.id.phonenumber);
+        spinnerForMembers = findViewById(R.id.spinner);
+
         auth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
 
+        //set members for dropdown
+        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.members, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerForMembers.setPrompt("Select your favorite Planet!");
+
+        spinnerForMembers.setAdapter(adapter);
         signupBtn = (Button) findViewById(R.id.signupButton);
         loginRedirectButton = (Button) findViewById(R.id.loginButton);
 
