@@ -11,14 +11,26 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HomePage extends AppCompatActivity{
     DrawerLayout drawer;
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
     private FirebaseAuth auth;
+    private FirebaseFirestore fstore;
+    Map<String, String> userDetailListReturnedValue = new HashMap<>();
+
+    UserClass sessionDetails = new UserClass();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +41,19 @@ public class HomePage extends AppCompatActivity{
         navigationView = findViewById(R.id.navBar);
 
         auth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(HomePage.this,drawer,R.string.open,R.string.close);
         drawer.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Toast.makeText(HomePage.this, "Login successful", Toast.LENGTH_SHORT).show();
+
+        //call details function
+        userDetailListReturnedValue = sessionDetails.getUserDetails(HomePage.this, auth, fstore);
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -51,11 +71,11 @@ public class HomePage extends AppCompatActivity{
                     startActivity(generateCode);
                 }
 
-                else if(id == R.id.updateRide){
+                else if(id == R.id.userData){
                     Toast.makeText(HomePage.this, "Pending requests to be accepted", Toast.LENGTH_SHORT).show();
                 }
                 else if(id == R.id.delete){
-                    Toast.makeText(HomePage.this, "Requested rides by the user", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomePage.this, "Pending requests to be accepted", Toast.LENGTH_SHORT).show();
                 }
                 //logout and return to login page removing data in textview
                 else if(id == R.id.logout){

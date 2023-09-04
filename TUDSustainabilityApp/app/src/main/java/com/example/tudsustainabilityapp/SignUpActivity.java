@@ -32,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public static final String TAG = "Tag";
     private FirebaseAuth auth;
     private FirebaseFirestore fstore;
+    String role;
     EditText username,emailID, password, reenterpasswrod, phonenumber;
     Button signupBtn, loginRedirectButton;
     String userID;
@@ -58,14 +59,27 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         //set members for dropdown
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.members, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerForMembers.setPrompt("Select your favorite Planet!");
 
+        //set spinner values
         spinnerForMembers.setAdapter(adapter);
+
         signupBtn = (Button) findViewById(R.id.signupButton);
         loginRedirectButton = (Button) findViewById(R.id.loginButton);
 
         signupBtn.setOnClickListener(this);
         loginRedirectButton.setOnClickListener(this);
+
+        spinnerForMembers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                role = spinnerForMembers.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                role = "Student";
+            }
+        });
     }//end onCreate
 
     @Override
@@ -98,13 +112,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
                                 //store the data
                                 Map<String, Object> userInfo = new HashMap<>();
-                                userInfo.put("Fullname", userFullname);
+                                userInfo.put("FullName", userFullname);
                                 userInfo.put("UserEmail", userEmail);
                                 userInfo.put("Password", userRepass);
                                 userInfo.put("PhoneNumber", userPhone);
 
-                                //is student or staff ie user or admin
-                                userInfo.put("isUser", "1");
+                                //is student/staff/lecturer
+                                userInfo.put("UserRole", role);
 
                                 //add document failure if the document in db failed
                                 documentReference.set(userInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
