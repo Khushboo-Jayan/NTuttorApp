@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -15,12 +18,19 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 //main activity used as log in page by default
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     //dummy user = test@mytudublin.ie and password = testing
     private FirebaseAuth auth;
+    private FirebaseFirestore fstore;
 
     EditText username, password;
     Button login, signinRedirect;
@@ -32,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
+
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
@@ -42,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //user does not have an account create one
         signinRedirect.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View view) {
@@ -56,15 +69,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
-                                        Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(MainActivity.this, HomePage.class));
-                                        finish();
+                                        DocumentReference df = fstore.collection("Users").document(auth.getUid());
+                                        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                Log.d("onSucces: ", documentSnapshot.getString("UserRole"));
+
+                                                if(documentSnapshot.getString("UserRole").equals("Canteen")){
+                                                    startActivity(new Intent(MainActivity.this, CanteenHomePage.class));
+                                                    finish();
+                                                }
+                                                if(documentSnapshot.getString("UserRole").equals("Student")) {
+                                                    startActivity(new Intent(MainActivity.this, HomePage.class));
+                                                    finish();
+                                                }
+                                            }
+                                        });
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-
                                     }
                                 });
                     } else{

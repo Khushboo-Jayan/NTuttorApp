@@ -6,8 +6,7 @@
 
     <string-array name="members">
         <item>Student</item>
-        <item>Lecturer</item>
-        <item>Staff</item>
+        <item>Canteen</item>
     </string-array>
 
 </resources>

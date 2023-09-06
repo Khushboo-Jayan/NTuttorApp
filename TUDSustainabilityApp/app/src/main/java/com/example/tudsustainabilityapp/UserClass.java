@@ -1,6 +1,7 @@
 package com.example.tudsustainabilityapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,12 +26,16 @@ import java.util.Objects;
 public class UserClass extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseFirestore fstore;
+    private Context context;
 
-    public  Map<String, String> getUserDetails(Context context, FirebaseAuth auth, FirebaseFirestore fstore){
-        Context activityContext = context;
+    public UserClass(Context context){
+        this.context = context;
+    }
+
+    public  void getUserDetails(FirebaseAuth auth, FirebaseFirestore fstore){
         this.auth = auth;
         this.fstore = fstore;
-        final Map<String, String> userDetailList = new HashMap<>();;
+        final Map<String, String> userDetailList = new HashMap<>();
 
         fstore.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -38,13 +43,11 @@ public class UserClass extends AppCompatActivity {
                 if (!queryDocumentSnapshots.isEmpty()) {
                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                     for (DocumentSnapshot d : list) {
-                        if(Objects.nonNull(d.get("FullName"))){
+                        if(d.getId().equals(auth.getUid())){
                             userDetailList.put("FullName", (String) d.get("FullName"));
                             userDetailList.put("PhoneNumber", (String) d.get("PhoneNumber"));
                             userDetailList.put("EmailID", (String) d.get("UserEmail"));
                             userDetailList.put("Role", (String) d.get("UserRole"));
-                            Toast.makeText(activityContext, (String) d.get("FullName"), Toast.LENGTH_LONG).show();
-
                         }else {
                             Toast.makeText(getParent(), "Fullname not found", Toast.LENGTH_LONG).show();
                         }//end else
@@ -52,6 +55,5 @@ public class UserClass extends AppCompatActivity {
                 }
             }
         });
-        return userDetailList;
     }
 }

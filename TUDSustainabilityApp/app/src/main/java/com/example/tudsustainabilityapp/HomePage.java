@@ -30,7 +30,7 @@ public class HomePage extends AppCompatActivity{
     private FirebaseFirestore fstore;
     Map<String, String> userDetailListReturnedValue = new HashMap<>();
 
-    UserClass sessionDetails = new UserClass();
+    UserClass sessionDetails = new UserClass(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class HomePage extends AppCompatActivity{
         Toast.makeText(HomePage.this, "Login successful", Toast.LENGTH_SHORT).show();
 
         //call details function
-        userDetailListReturnedValue = sessionDetails.getUserDetails(HomePage.this, auth, fstore);
+        sessionDetails.getUserDetails(auth, fstore);
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
