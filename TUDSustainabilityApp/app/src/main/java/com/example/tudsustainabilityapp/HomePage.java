@@ -28,9 +28,6 @@ public class HomePage extends AppCompatActivity{
     ActionBarDrawerToggle actionBarDrawerToggle;
     private FirebaseAuth auth;
     private FirebaseFirestore fstore;
-    Map<String, String> userDetailListReturnedValue = new HashMap<>();
-
-    UserClass sessionDetails = new UserClass(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +46,6 @@ public class HomePage extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Toast.makeText(HomePage.this, "Login successful", Toast.LENGTH_SHORT).show();
-
-        //call details function
-        sessionDetails.getUserDetails(auth, fstore);
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
